@@ -21,7 +21,7 @@ class Shop(models.Model):
         return Click.objects.filter(shop=self).count()
 
     def get_shop_sum(self):
-        return Shop.objects.filter(id=self.id).aggregate(models.Sum('price'))
+        return Callback.objects.filter(shop=self).aggregate(models.Sum('shop__price'))
 
 
 class Market(models.Model):
@@ -40,7 +40,7 @@ class Market(models.Model):
         return Click.objects.filter(shop__market=self).count()
 
     def get_market_sum(self):
-        return Shop.objects.filter(market=self).aggregate(models.Sum('price'))
+        return Callback.objects.filter(shop__market=self).aggregate(models.Sum('shop__price'))
 
 
 class Click(models.Model):

@@ -14,6 +14,15 @@ class Shop(models.Model):
     def __str__(self):
         return self.name
 
+    def get_shop_callbacks(self):
+        return Callback.objects.filter(shop=self).count()
+
+    def get_shop_clicks(self):
+        return Click.objects.filter(shop=self).count()
+
+    def get_shop_sum(self):
+        return Shop.objects.filter(id=self.id).aggregate(models.Sum('price'))
+
 
 class Market(models.Model):
     name = models.CharField(max_length=255)
@@ -48,5 +57,3 @@ class Callback(models.Model):
 
     def __str__(self):
         return f"{self.shop} {self.time}"
-
-

@@ -23,13 +23,12 @@ class MarketViewSet(viewsets.ModelViewSet):
     serializer_class = MarketSerializer
 
 
-class ClickCreateViewSet(mixins.CreateModelMixin, viewsets.ViewSet):
+class ClickCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = CallbackSerializer
     queryset = Click.objects.all()
 
 
-class CallbackCreateViewSet(mixins.CreateModelMixin, viewsets.ViewSet):
+class CallbackCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = CallbackSerializer
     queryset = Callback.objects.all()
-
 

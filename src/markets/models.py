@@ -13,13 +13,11 @@ class Shop(models.Model):
 
     def __str__(self):
         return self.name
-
-    def create_link(self):
-        return {'name': self.name}
+        
+    
 
     def get_links(self):
         return self.objects.filter()
-
 
 
 class Market(models.Model):

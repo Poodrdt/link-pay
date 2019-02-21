@@ -13,11 +13,6 @@ class Shop(models.Model):
 
     def __str__(self):
         return self.name
-        
-    
-
-    def get_links(self):
-        return self.objects.filter()
 
 
 class Market(models.Model):
@@ -30,7 +25,13 @@ class Market(models.Model):
         return self.name
 
     def get_market_shops_callbacks(self):
-        return Callback.objects.filter(shop__market_shops__market=self, active=True)
+        return Callback.objects.filter(shop__market=self).count()
+
+    def get_market_shops_clicks(self):
+        return Click.objects.filter(shop__market=self).count()
+
+    def get_market_sum(self):
+        return Shop.objects.filter(market=self).aggregate(models.Sum('price'))
 
 
 class Click(models.Model):

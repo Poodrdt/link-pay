@@ -3,7 +3,6 @@ from .models import *
 
 
 class MarketSerializer(serializers.ModelSerializer):
-    # permission_classes = (IsAuthenticated,)
     shops = serializers.StringRelatedField(many=True)
 
     class Meta:
@@ -12,7 +11,6 @@ class MarketSerializer(serializers.ModelSerializer):
 
 
 class ShopSerializer(serializers.ModelSerializer):
-    # permission_classes = (IsAuthenticated,)
 
     markets = MarketSerializer(many=True, required=False)
 
@@ -23,13 +21,11 @@ class ShopSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         ret = super(ShopSerializer, self).to_representation(obj)
         if not obj.active:
-            print(ret)
             ret['link'] = 'Shop is not avaliable'
         return ret 
 
 
 class CallbackSerializer(serializers.ModelSerializer):
-    # shop = serializers.RelatedField(queryset=Shop.objects.all())
 
     class Meta:
         model = Callback

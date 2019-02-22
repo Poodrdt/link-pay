@@ -1,5 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.db import models
-
+User = get_user_model()
 
 class Shop(models.Model):
     name = models.CharField(max_length=255)
@@ -28,6 +29,7 @@ class Market(models.Model):
     name = models.CharField(max_length=255)
     alias = models.CharField(max_length=255, unique=True)
     shops = models.ManyToManyField(Shop)
+    managers = models.ManyToManyField(User)
     active = models.BooleanField(default=True)
 
     def __str__(self):

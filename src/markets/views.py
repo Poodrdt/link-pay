@@ -15,6 +15,18 @@ class ShopLinksView(TemplateView):
 class ShopView(TemplateView):
     template_name = "markets/shop.html"
 
+    
+class ShopView1(TemplateView):
+    template_name = "markets/shop1.html"
+
+
+class ShopView2(TemplateView):
+    template_name = "markets/shop1.html"
+
+
+class ShopView3(TemplateView):
+    template_name = "markets/shop3.html"
+
 
 class ShopViewSet(viewsets.ModelViewSet):
     permission_classes = (IsThisMarketManager,)

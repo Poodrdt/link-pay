@@ -17,7 +17,7 @@ class ShopSerializer(serializers.ModelSerializer):
 
 class MarketSerializer(serializers.ModelSerializer):
     
-    shops = ShopSerializer(many=True)
+    shops = ShopSerializer(many=True, required=False)
 
     class Meta:
         model = Market

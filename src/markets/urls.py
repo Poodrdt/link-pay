@@ -15,4 +15,7 @@ urlpatterns = [
     path('api/', include(router.urls), name='api'),
     path('', ShopLinksView.as_view(), name='shop-links'),
     path('shop', ShopView.as_view(), name='shop'),
+    path('shop1', ShopView1.as_view(), name='shop1'),
+    path('shop2', ShopView2.as_view(), name='shop2'),
+    path('shop3', ShopView3.as_view(), name='shop3'),
 ]

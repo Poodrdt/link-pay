@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 class IsThisMarketManager(BasePermission):
     
     def has_object_permission(self, request, view, obj):
-        # print(self)
         if request.method in ["POST", "PUT", "PATCH", "DELETE"]:
             if request.user.is_superuser:
                 return True

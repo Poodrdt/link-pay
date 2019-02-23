@@ -14,4 +14,5 @@ router.register(r'shop-statistics', ShopStatisticsViewSet, base_name='shop-stati
 urlpatterns = [
     path('api/', include(router.urls), name='api'),
     path('', ShopLinksView.as_view(), name='shop-links'),
+    path('shop', ShopView.as_view(), name='shop'),
 ]

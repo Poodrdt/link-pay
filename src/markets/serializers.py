@@ -11,13 +11,13 @@ class ShopSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         ret = super(ShopSerializer, self).to_representation(obj)
         if not obj.active:
-            ret['link'] = 'Shop is not avaliable'
+            ret['link'] = ['Shop is not avaliable']
         return ret 
 
 
 class MarketSerializer(serializers.ModelSerializer):
     
-    shops = serializers.StringRelatedField(many=True)
+    shops = ShopSerializer(many=True)
 
     class Meta:
         model = Market
@@ -26,7 +26,7 @@ class MarketSerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         ret = super(MarketSerializer, self).to_representation(obj)
         if not obj.active:
-            ret['shops'] = 'Market is not active'
+            ret['shops'] = [{'message': 'Market is not active'}]
         return ret 
 
 

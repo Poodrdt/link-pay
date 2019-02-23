@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/bootstrap/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% csrf_token %}
+    <script>
+    var token =  $('input[name="csrfmiddlewaretoken"]').attr('value')
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRFToken', token);
+        }
+    });
+    function sendFeedback(shop_id) {
+        $.post('/api/callback/', {
+            "shop":shop_id
+    }, function(resp) {
+            //Do something with the AJAX response
+        });
+    }
+    </script>
+        
+    <div class="container-fluid">
+            <div id="markets">
+
+            </div>
+
+            <div id='${shop.id}'>
+                <a href="#" onclick="sendFeedback(8); return false;">Callback</a>
+            </div>
+        <!--    
+            
+        -->
+    </div>
+</body>
+</html>

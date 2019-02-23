@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/bootstrap/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -27,34 +29,54 @@
     function sendClick(shop_id, shop_link) {
         $.post('/api/click/', {"shop":shop_id}, function(resp) {
         if(shop_link == "Shop is not avaliable"){alert(shop_link)}
-        window.location.href = shop_link;
+        else{window.location.href = shop_link;}
         });
     }
     getShops = $.get( "api/market/", function(markets){
         markets.forEach( function(market){
-            console.log(market.name)
-            console.log(market.shops)
-         
-            
-            $('#markets').append()
+            $('#markets').append(
+            `<div id='${market.name}'>
+                <h2>${market.name}</h1>
+             </div>`
+            );
+            market.shops.forEach( function(shop){
+                $('#' + market.name).append(
+                    `<div>
+                    <a href="#" onclick="sendClick( ${shop.id}, '${shop.link}' ); return false;">${shop.name} Active: ${shop.active}</a>
+                    </div>`
+                );
             });
         });
-        </script>
+    });
+    </script>
         
-        
-        <div class="container-fluid">
-        <!--    
+    <div class="container-fluid">
             <div id="markets">
-                
-                `<div>
-                <a href="#" onclick="sendFeedback({element.id}); return false;">Callback</a>
-                </div>`
-        
-        
-                <a href="#" onclick="sendClick( {{ shop.id }}, '{{ shop.link }}' ); return false;">Click</a>
-            </div>
-        -->
-</div>
 
+            </div>
+
+            <!--    
+                <div id='${shop.id}'>
+                    <a href="#" onclick="sendFeedback(${shop.id}); return false;">Callback</a>
+                </div>
+            
+        -->
+    </div>
+    <div class="container-fluid">
+            <div id="links">
+                Usefull links:
+                    http://localhost:8000/ - маркет со списком магазинов
+                    http://localhost:8000/api - редактирование всего через REST API а также статистика
+                    http://localhost:8000/shop - тестовый шоп с колбеком
+                    http://localhost:8000/admin - управление юзерами
+            </div>
+
+            <!--    
+                <div id='${shop.id}'>
+                    <a href="#" onclick="sendFeedback(${shop.id}); return false;">Callback</a>
+                </div>
+            
+        -->
+    </div>
 </body>
 </html>

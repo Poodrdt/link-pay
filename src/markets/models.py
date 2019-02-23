@@ -14,7 +14,7 @@ class Shop(models.Model):
 
     def __str__(self):
         link = self.link if self.active else "Inactive"
-        return f"{self.name} {link}"
+        return self.name
 
     def get_shop_callbacks(self):
         return Callback.objects.filter(shop=self).count()

@@ -11,9 +11,9 @@ from .serializers import *
 class ShopLinksView(TemplateView):
     template_name = "markets/test.html"
 
-    def get_context_data(self, **kwargs):
-        print(self.request.user)
-        print(bool(self.request.user.groups.filter(name="MarketManager").first()))
+
+class ShopView(TemplateView):
+    template_name = "markets/shop.html"
 
 
 class ShopViewSet(viewsets.ModelViewSet):

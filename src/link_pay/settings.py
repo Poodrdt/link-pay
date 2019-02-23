@@ -25,7 +25,7 @@ SECRET_KEY = '556e7eg6m#(dw8&y@#2gox*wfa(c@9synou0vjb0tj8-4#3ejl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'link_pay.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['src/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

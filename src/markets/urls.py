@@ -7,10 +7,11 @@ router.register(r'market', MarketViewSet, base_name='market')
 router.register(r'shop', ShopViewSet, base_name='shop')
 router.register(r'callback', CallbackCreateViewSet, base_name='callback')
 router.register(r'click', ClickCreateViewSet, base_name='click')
+router.register(r'market-statistics', MarketStatisticsViewSet, base_name='market-statistics')
+router.register(r'shop-statistics', ShopStatisticsViewSet, base_name='shop-statistics')
 
 
 urlpatterns = [
-    # path('api/callback', CallbackCreateView.as_view(), name='callback'),
     path('api/', include(router.urls), name='api'),
-    path('test/', ShopLinksView.as_view(), name='shop-links'),
+    path('', ShopLinksView.as_view(), name='shop-links'),
 ]

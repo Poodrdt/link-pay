@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dark-admin/1-4-3/vendor/bootstrap/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    {% csrf_token %}
+    <script>
+    var token =  $('input[name="csrfmiddlewaretoken"]').attr('value')
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRFToken', token);
+        }
+    });
+    function sendFeedback(shop_id) {
+        $.post('/api/callback/', {
+            "shop":shop_id
+    }, function(resp) {
+            //Do something with the AJAX response
+        });
+    }
+    function sendClick(shop_id, shop_link) {
+        $.post('/api/click/', {"shop":shop_id}, function(resp) {
+        if(shop_link == "Shop is not avaliable"){alert(shop_link)}
+        window.location.href = shop_link;
+        });
+    }
+    getShops = $.get( "api/market/", function(markets){
+        markets.forEach( function(market){
+            console.log(market.name)
+            console.log(market.shops)
+         
+            
+            $('#markets').append()
+            });
+        });
+        </script>
+        
+        
+        <div class="container-fluid">
+        <!--    
+            <div id="markets">
+                
+                `<div>
+                <a href="#" onclick="sendFeedback({element.id}); return false;">Callback</a>
+                </div>`
+        
+        
+                <a href="#" onclick="sendClick( {{ shop.id }}, '{{ shop.link }}' ); return false;">Click</a>
+            </div>
+        -->
+</div>
+
+</body>
+</html>

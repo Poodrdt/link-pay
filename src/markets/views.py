@@ -47,7 +47,7 @@ class MarketViewSet(viewsets.ModelViewSet):
 
 
 class ClickCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-    serializer_class = CallbackSerializer
+    serializer_class = ClickSerializer
     queryset = Click.objects.all()
 
 
